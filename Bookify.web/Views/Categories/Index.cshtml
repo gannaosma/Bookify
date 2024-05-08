@@ -62,10 +62,18 @@
                             {
                                 <tr>
                                     <td>@category.Name</td>
-                                    <td>@category.IsDeleted</td>
+                                    <td>
+                                        <span class="badge badge-light-@(category.IsDeleted ? "danger" : "success")">
+                                            @(category.IsDeleted ? "Deleted" : "Available")
+                                        </span>
+                                    </td>
                                     <td>@category.CreatedOn</td>
                                     <td>@category.LastUpdatedOn</td>
-                                    <td></td>
+                                    <td>
+                                        <a class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary" asp-controller="Categories" asp-action="Edit" asp-route-id="@category.Id">
+                                            Edit
+                                        </a>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
