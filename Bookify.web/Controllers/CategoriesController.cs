@@ -1,22 +1,22 @@
 ﻿namespace Bookify.web.Controllers
 {
-	public class CategoriesController : Controller
-	{
-		private readonly ApplicationDbContext _context;
+    public class CategoriesController : Controller
+    {
+        private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
         public CategoriesController(ApplicationDbContext context, IMapper mapper)
         {
-			_context = context;
+            _context = context;
             _mapper = mapper;
         }
 
         public IActionResult Index()
-		{
-			var Categories = _context.Categories.AsNoTracking().ToList();
+        {
+            var Categories = _context.Categories.AsNoTracking().ToList();
             var CategoriesViewModel = _mapper.Map<IEnumerable<CategoryViewModel>>(Categories);
 
-			return View(CategoriesViewModel);
-		}
+            return View(CategoriesViewModel);
+        }
 
         [AjaxOnly]
         public IActionResult Create()
@@ -35,9 +35,9 @@
             _context.Categories.Add(category);
             _context.SaveChanges();
 
-            var CategoryViewModel = _mapper.Map<CategoryViewModel>(category);
+            var categoryViewModel = _mapper.Map<CategoryViewModel>(category);
 
-            return PartialView("_CategoryRow", CategoryViewModel);
+            return PartialView("_CategoryRow", categoryViewModel);
         }
 
         [AjaxOnly]

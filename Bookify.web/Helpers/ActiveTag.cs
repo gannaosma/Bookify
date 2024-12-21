@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace Bookify.web.Helpers
 {
     [HtmlTargetElement("a", Attributes = "active-when")]
-    public class ActiveTag: TagHelper
+    public class ActiveTag : TagHelper
     {
         public string? ActiveWhen { get; set; }
 
