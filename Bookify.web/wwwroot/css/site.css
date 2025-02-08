@@ -27,3 +27,11 @@ body {
     padding-bottom: 0.25rem;
 }
 /*End Edit n theme*/
+
+.dt-spinner + div{
+    display: none
+}
+
+.h-70{
+    height: 70px !important;
+}

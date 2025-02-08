@@ -27,8 +27,13 @@ function showErrorMessage(message = "Somthing Went Wrong!") {
     });
 }
 
-function onModalBegin() {
+function disableSubmitButton() {
     $('body :submit').attr('disabled', 'disabled').attr('data-kt-indicator', 'on');
+
+}
+
+function onModalBegin() {
+    disableSubmitButton();
 }
 
 function onModalSuccess(row) {
@@ -139,6 +144,49 @@ var KTDatatables = function () {
     };
 }();
 $(document).ready(function () {
+    //On submtting form
+    $('form').on('submit', function () {
+        if ($('.js-tinymce').length > 0) {
+            $('.js-tinymce').each(function () {
+                var input = $(this)
+                var content = tinymce.get(input.attr('id')).getcontent();
+                input.val(content);
+            });
+        }
+
+        //var isValid = $(this).valid();
+        if ($(this).valid())
+            disableSubmitButton();
+    });
+
+
+    //tinymce
+    if ($('.js-tinymce').length > 0) {
+
+        var options = { selector: ".js-tinymce", height: "433px" };
+
+        if (KTThemeMode.getMode() === "dark") {
+            options["skin"] = "oxide-dark";
+            options["content_css"] = "dark";
+        }
+
+        tinymce.init(options);
+    }
+
+    //Select2
+    $('.js-select2').select2();
+    $('.js-select2').on('select2:select', function (e) {
+        $('form').validate().element('#' + $(this).attr('id'));
+    });
+
+    //Datepicker
+    $('.js-datepicker').daterangepicker({
+        singleDatePicker: true,
+        autoApply: true,
+        drops: 'up',
+        maxDate: new Date()
+    })
+
     //sweet Alerts
     var message = $('#message').text();
     if (message != '') {
