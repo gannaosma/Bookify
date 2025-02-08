@@ -17,7 +17,7 @@
 
         public DateTime PublishingDate { get; set; }
 
-        public string? ImageUrl { get; set; }
+        public string? Image { get; set; }
 
         [MaxLength(50)]
         public string Hall { get; set; } = null!;
@@ -26,6 +26,6 @@
         
         public string Description { get; set; } = null!;
 
-        public ICollection<BookCategory> categories { get; set; } = new List<BookCategory>();
+        public ICollection<BookCategory> Categories { get; set; } = new List<BookCategory>();
     }
 }

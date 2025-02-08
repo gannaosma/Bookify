@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*Start Edit n theme*/
+.form-floating > .form-select {
+    padding-top: 2.15rem;
+    padding-bottom: 0.25rem;
+}
+/*End Edit n theme*/

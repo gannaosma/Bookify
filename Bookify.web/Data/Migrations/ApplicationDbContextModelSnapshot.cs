@@ -75,7 +75,7 @@ namespace Bookify.web.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAvailabeForRental")
@@ -371,7 +371,7 @@ namespace Bookify.web.Data.Migrations
             modelBuilder.Entity("Bookify.web.Core.Models.BookCategory", b =>
                 {
                     b.HasOne("Bookify.web.Core.Models.Book", "Book")
-                        .WithMany("categories")
+                        .WithMany("Categories")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -440,7 +440,7 @@ namespace Bookify.web.Data.Migrations
 
             modelBuilder.Entity("Bookify.web.Core.Models.Book", b =>
                 {
-                    b.Navigation("categories");
+                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("Bookify.web.Core.Models.Category", b =>

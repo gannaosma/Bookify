@@ -1,16 +1,27 @@
-﻿namespace Bookify.web.Core.Mapping
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace Bookify.web.Core.Mapping
 {
     public class MappingProfile : Profile
     {
         public MappingProfile()
         {
-            //Category
+            //Categories
             CreateMap<Category, CategoryViewModel>();
             CreateMap<Category, CategoryFormViewModel>().ReverseMap();
+            CreateMap<Category, SelectListItem>()
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.Name));
 
-            //Author
+            //Authors
             CreateMap<Author, AuthorViewModel>();
             CreateMap<Author, AuthorFormViewModel>().ReverseMap();
+            CreateMap<Author, SelectListItem>()
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.Name));
+
+            //Books
+            CreateMap<BookViewModel, Book>();
 
         }
     }
